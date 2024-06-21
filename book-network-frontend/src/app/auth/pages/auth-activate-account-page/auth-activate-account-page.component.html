@@ -1,0 +1,25 @@
+@if (submitted) {
+<div class="container">
+  @if (isOk) {
+  <div class="activate-message">
+    <h2 class="successful">Activación exitosa</h2>
+    <p>{{ message }}</p>
+    <button type="button" class="btn btn-primary" (click)="redirectToLogin()">Ir al login</button>
+  </div>
+  }@else {
+  <div class="activate-errro text-center">
+    <h2 class="failed text-center">Activación fallida</h2>
+    <p class="text-center">{{ message }}</p>
+    <button type="button" class="btn btn-primary" (click)="submitted = false">Intentar nuevamente</button>
+  </div>
+  }
+</div>
+} @else {
+<div class="container">
+  <div class="text-center" style="width: 800px;">
+    <h2>Ingrese su código de activación</h2>
+    <code-input [isCodeHidden]="false" [codeLength]="6" [code]="'number'" (codeCompleted)="onCodeCompleted($event)"
+      [className]="'large-text'"></code-input>
+  </div>
+</div>
+}

@@ -1,0 +1,11 @@
+<div class="rating">
+  @for (_ of [].constructor(fullStarts); track $index) {
+  <i class="fas fa-star text-warning"></i>
+  }
+  @if(hasHalfStart) {
+  <i class="fas fa-star-half-alt text-warning"></i>
+  }
+  @for (_ of [].constructor(emptyStarts); track $index) {
+  <i class="fas fa-star"></i>
+  }
+</div>

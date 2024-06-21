@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:15.2-alpine
+    container_name: c-postgres-bsn
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: db_book_social_network
+      POSTGRES_USER: magadiflo
+      POSTGRES_PASSWORD: magadiflo
+    ports:
+      - 5435:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - spring-net
+
+  mail-dev:
+    image: maildev/maildev
+    container_name: c-mail-dev-bsn
+    restart: unless-stopped
+    ports:
+      - 1080:1080
+      - 1025:1025
+    networks:
+      - spring-net
+
+volumes:
+  postgres_data:
+    name: postgres_data
+
+networks:
+  spring-net:
+    name: spring-net

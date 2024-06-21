@@ -1,0 +1,57 @@
+<div class="container p-2">
+  <h2>Administrar mi libro</h2>
+  <hr>
+  @if (errorMessages.length) {
+  <div class="alert alert-danger mt-2" role="alert">
+    @for (message of errorMessages; track $index) {
+    <p class="p-0 m-0">{{ message }}</p>
+    }
+  </div>
+  }
+  <div class="d-flex gap-2">
+    <div class="col-3">
+      <img [src]="imagePreview || './assets/books/no_image_available.svg'" class="rounded-1" width="100%" height="100%">
+      <div class="mt-2">
+        <input type="file" (change)="onFileSelected($event)" accept="image/*" class="form-control" id="formFile">
+      </div>
+    </div>
+    <div class="col-9">
+      <form [formGroup]="form" class="row g-3" autocomplete="off">
+        <div class="col-12">
+          <label for="title" class="form-label">Título del libro</label>
+          <input type="text" class="form-control" id="title" formControlName="title">
+        </div>
+        <div class="col-6">
+          <label for="authorName" class="form-label">Nombre del autor</label>
+          <input type="text" class="form-control" id="authorName" formControlName="authorName">
+        </div>
+        <div class="col-6">
+          <label for="isbn" class="form-label">ISBN</label>
+          <input type="text" class="form-control" id="isbn" formControlName="isbn">
+        </div>
+        <div class="col-12">
+          <label for="synopsis" class="form-label">Sinopsis</label>
+          <textarea id="synopsis" class="form-control" rows="4" formControlName="synopsis"></textarea>
+        </div>
+        <div class="col-12 form-check">
+          <input type="checkbox" class="form-check-input" id="shareable" formControlName="shareable">
+          <label class="form-check-label" for="shareable">Compárteme</label>
+        </div>
+        <div class="d-flex justify-content-end gap-2 col-12">
+          @if(action == 'create') {
+          <button type="button" (click)="saveBook()" class="btn btn-outline-primary">
+            <i class="fas fa-save"></i>&nbsp; Guardar
+          </button>
+          }@else {
+            <button type="button" (click)="updateBook()" class="btn btn-outline-primary">
+              <i class="fas fa-refresh"></i>&nbsp; Actualizar
+            </button>
+          }
+          <a [routerLink]="['/books', 'my-books']" class="btn btn-link text-danger">
+            <i class="fas fa-times"></i>&nbsp;Cancelar
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
