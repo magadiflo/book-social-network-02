@@ -12,23 +12,24 @@ spring:
         format_sql: true
 
   mail:
-    host: localhost
-    port: 1025
-    username: magadiflo
-    password: magadiflo
+    host: smtp.gmail.com
+    port: 587
+    username: magadiflo@gmail.com
+    password: vzpopostwaqgsljr
+    protocol: smtp
     default-encoding: UTF-8
     properties:
       mail:
         mime:
           charset: UTF-8
         smtp:
-          trust: '*'
           connectiontimeout: 5000
           timeout: 3000
           writetimeout: 5000
           auth: true
           starttls:
             enable: true
+            required: true
 
 logging:
   level:

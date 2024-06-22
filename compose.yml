@@ -13,6 +13,11 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - spring-net
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready -U magadiflo -d db_book_social_network' ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   mail-dev:
     image: maildev/maildev
@@ -23,6 +28,18 @@ services:
       - 1025:1025
     networks:
       - spring-net
+
+  book-network-backend:
+    image: magadiflo/book-network-backend:1.0.0
+    container_name: c-book-network-backend
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    networks:
+      - spring-net
+    depends_on:
+      postgres:
+        condition: service_healthy
 
 volumes:
   postgres_data:
