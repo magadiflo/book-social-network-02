@@ -41,6 +41,15 @@ services:
       postgres:
         condition: service_healthy
 
+  book-network-frontend:
+    image: magadiflo/book-network-frontend:1.0.0
+    container_name: c-book-network-frontend
+    restart: unless-stopped
+    ports:
+      - 80:80
+    networks:
+      - spring-net
+
 volumes:
   postgres_data:
     name: postgres_data

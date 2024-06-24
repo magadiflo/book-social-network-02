@@ -1,0 +1,13 @@
+**/.angular
+**/.vscode
+**/dist
+**/node_modules
+**/.git
+**/README.md
+**/LICENSE
+**/npm-debug-log
+**/coverage
+**/.env
+**/.editorconfig
+**/.aws
+**/assets_documentation
